@@ -24,15 +24,15 @@ public class BubbleSortAnalysis extends EmpiricalAnalysis {
         for (int i = data.length - 1; i > 0; i--) {
             for (int j = 0; j < i; j++) {
                 if (data[j] > data[j + 1]) {
-                    swapp(data, j, j+1);
+                    swap(data, j, j+1);
                 }
             }
         }
     }
     
-    public void swapp(int[] data, int i1, int i2) {
-        int tmp = data[i1];
-        data[i1] = data[i2];
-        data[i2] = tmp;
-    }
+//    public void swapp(int[] data, int i1, int i2) {
+//        int tmp = data[i1];
+//        data[i1] = data[i2];
+//        data[i2] = tmp;
+//    }
 }

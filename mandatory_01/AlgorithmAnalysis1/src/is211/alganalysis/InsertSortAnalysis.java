@@ -27,7 +27,7 @@ public class InsertSortAnalysis extends EmpiricalAnalysis {
         //outer loop picks the next value to insert
         for (int i = 1; i < n; i++) {
             //inner loop inserts it
-            int nextval = data[i];
+            int nextval = assign(data[i]);
             int j = i-1;
             while (j >= 0 && data[j] > nextval) {
                 data[j + 1] = data[j];
