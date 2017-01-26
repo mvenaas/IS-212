@@ -40,7 +40,7 @@ public class SelectionSortAnalysis extends EmpiricalAnalysis
                 if (lessThan(data[i], data[minIdx])) minIdx = i;
             }
             if (minIdx != j) {
-                swap(data, j, minIdx);
+                super.swap(data, j, minIdx);
             }
         }
     }

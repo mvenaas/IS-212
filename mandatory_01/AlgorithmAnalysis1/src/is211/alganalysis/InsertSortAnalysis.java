@@ -29,7 +29,7 @@ public class InsertSortAnalysis extends EmpiricalAnalysis {
             //inner loop inserts it
             int nextval = assign(data[i]);
             int j = i-1;
-            while (j >= 0 && data[j] > nextval) {
+            while (j >= 0 && super.greaterThan(data[j], nextval)) {
                 data[j + 1] = data[j];
                 j--;
             }

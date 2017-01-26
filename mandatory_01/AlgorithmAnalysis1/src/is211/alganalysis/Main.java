@@ -21,9 +21,9 @@ public class Main {
 
 //        new SelectionSortAnalysis().runAnalysis(10001);
         
-        new InsertSortAnalysis().runAnalysis(100001);
+        new InsertSortAnalysis().runAnalysis(2131);
         
-        new BubbleSortAnalysis().runAnalysis(100001);
+        new BubbleSortAnalysis().runAnalysis(2131);
     }
     
 }
