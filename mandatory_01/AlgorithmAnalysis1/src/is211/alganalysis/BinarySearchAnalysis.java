@@ -41,11 +41,11 @@ public class BinarySearchAnalysis extends EmpiricalAnalysis {
     private boolean bsearch(int[] data, int lo, int hi, int v) {
         if (lo < hi) {
             int mid = (lo+hi)/2;
-            if (v < data[mid]) {
+            if (super.lessThan(v , data[mid])) {
                 numCompare++;
                 return bsearch(data, lo, mid, v);
             }
-            else if (v > data[mid]) {
+            else if (super.greaterThan(v , data[mid])) {
                 numCompare +=2;
                 return bsearch(data, mid+1, hi, v);
             }
