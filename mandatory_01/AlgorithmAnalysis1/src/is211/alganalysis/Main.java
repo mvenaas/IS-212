@@ -13,17 +13,17 @@ public class Main {
     public static void main(String[] args) {
         // uncomment the analysis that you want to run
         
-//        new BinarySearchAnalysis().runAnalysis(1000001);
-        
-//        new MergesortAnalysis().runAnalysis(1000001);
-
-//        new QuickSortAnalysis().runAnalysis(100001);
-
-//        new SelectionSortAnalysis().runAnalysis(10001);
-        
-        new InsertSortAnalysis().runAnalysis(100001);
-        
-        new BubbleSortAnalysis().runAnalysis(100001);
+//        new BinarySearchAnalysis().runAnalysis(10000);
+//        
+//        new MergesortAnalysis().runAnalysis(10000);
+//
+//        new QuickSortAnalysis().runAnalysis(10000);
+//
+//        new SelectionSortAnalysis().runAnalysis(10000);
+//        
+        new InsertSortAnalysis().runAnalysis(10000);
+//
+        new BubbleSortAnalysis().runAnalysis(10000);
     }
     
 }
