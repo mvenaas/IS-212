@@ -5,6 +5,8 @@
  */
 package is211.alganalysis;
 
+import java.util.Arrays;
+
 /**
  *
  * @author evenal
@@ -26,8 +28,20 @@ public class MergesortAnalysis extends EmpiricalAnalysis {
      * Mergesort, rather naive implementation with excessive
      * memory usage
      */
+    
+    public static void main(String[]args){
+        MergesortAnalysis test = new MergesortAnalysis();
+        int[] data = {5, 2 ,7 ,8 ,9 ,1, 6, 3, 4 };
+        //int[] data = {1,2,3,4,5,6,7,8,9};
+        System.out.println("Data to sort:" + Arrays.toString(data));
+        test.mSort(data);
+        System.out.println("Sorted data:" + Arrays.toString(data));
+    }
+    
     public void mSort(int[] data) {
+        
         if (data.length > 1) {
+            
             int m = data.length / 2;
             int[] d1 = new int[m];
             int[] d2 = new int[data.length - m];
@@ -38,11 +52,19 @@ public class MergesortAnalysis extends EmpiricalAnalysis {
             if (d1.length > 1) mSort(d1);
             if (d2.length > 1) mSort(d2);
             merge(data, d1, d2);
+            
         }
     }
 
 
     public void merge(int[] data, int[] part1, int part2[]) {
+        System.out.println("Merge data:");
+        System.out.println(Arrays.toString(data));
+        System.out.println("Part1:");
+        System.out.println(Arrays.toString(part1));
+        System.out.println("Part2:");
+        System.out.println(Arrays.toString(part2));
+        System.out.println("");
         int im = 0;
         int i1 = 0;
         int i2 = 0;

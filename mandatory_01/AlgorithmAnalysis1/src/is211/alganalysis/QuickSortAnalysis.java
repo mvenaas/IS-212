@@ -1,6 +1,8 @@
 
 package is211.alganalysis;
 
+import java.util.Arrays;
+
 
 
 /**
@@ -28,8 +30,16 @@ public class QuickSortAnalysis extends EmpiricalAnalysis
         qSort(data, 0, data.length);
     }
 
-
-    public void qSort(int[] data, int lo, int hi) {
+    public static void main(String[]args){
+        QuickSortAnalysis test = new QuickSortAnalysis();
+        int[] data = {5, 2 ,7 ,8 ,9 ,1, 6, 3, 4 };
+        //int[] data = {1,2,3,4,5,6,7,8,9};
+        System.out.println("Data to sort:" + Arrays.toString(data));
+        test.qSort(data);
+        System.out.println("Sorted data:" + Arrays.toString(data));
+    }
+    public void qSort(int[] data, int lo, int hi) { 
+    
         if (lo < hi) {
             int p = partition(data, lo, hi);
             qSort(data, lo, p);
@@ -39,6 +49,7 @@ public class QuickSortAnalysis extends EmpiricalAnalysis
 
 
     public int partition(int[] data, int lo, int hi) {
+         System.out.println("..sorting.." + Arrays.toString(data));  
         int ilo = lo;
         int ihi = hi - 1;
         int p = data[ihi];
