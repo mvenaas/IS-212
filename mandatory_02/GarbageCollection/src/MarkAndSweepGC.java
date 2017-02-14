@@ -129,7 +129,25 @@ public class MarkAndSweepGC extends Heap
      * non-NULL values in ptr1 and ptr2
      */
     private void mark(int objAddr) {
-        System.out.println("loool"+memory[objAddr]);
+//    The mark phase
+//    The purpose of the mark phase is to find and mark all objects that can be reached directly or
+//    indirectly from a set of root variables. The root set typically includes at least all local
+//    variables on the call stack, and any static variables. The mark algorithm then becomes:
+//    * Mark all objects as garbage (with a little help from the memory allocation algorithm
+//    this step can be skipped).
+//    * Mark the object pointed to by a variable in the root set as usable.
+//    * Mark the objects that can be reached from the root objects as usable, and then the
+//    objects that can be reached from them, and so on.
+//    * Usable objects should only be marked once, there may be more than one path from
+//    root to an object, and there may be loop structures.
+    
+
+        if (this.getFlag(objAddr) != REACHABLE && this.getFlag(objAddr) != FREE) {
+            this.setFlag(objAddr, GARBAGE);
+            
+        } 
+        
+        
         // problem 1a
     }
     /**
@@ -141,6 +159,20 @@ public class MarkAndSweepGC extends Heap
      * next block is addr + getSize(addr), where addr is the address
      * of the current block */
     private void sweep() {
+
+        int i = 0;
+        while ( i < HEAP_SIZE) {
+
+            if (this.getFlag(i) == GARBAGE){
+                System.out.println(i);
+                this.setFlag(i, FREE);
+            }
+            
+            // next addr.
+            i = i + this.getSize(i);
+            
+        }
+
         // problem 1b
     }
 
