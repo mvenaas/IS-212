@@ -3,5 +3,6 @@
  */
 public class Task1 {
 
-    int lol = 3;
+    int lol = 2;
+
 }
