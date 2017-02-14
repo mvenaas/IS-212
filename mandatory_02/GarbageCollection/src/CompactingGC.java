@@ -77,6 +77,7 @@ public class CompactingGC extends Heap
 
     private int calculateAddresses() {
         // opg 2a
+        return 0;
     }
 
 

@@ -124,14 +124,26 @@ public class MarkAndSweepGC extends Heap
     }
 
 
-    private void mark(int block) {
-        // oppgave 1 a
+    /**
+     * Finds all usable objects, starting from root, and following
+     * non-NULL values in ptr1 and ptr2
+     */
+    private void mark(int objAddr) {
+        System.out.println("loool"+memory[objAddr]);
+        // problem 1a
     }
-
-
+    /**
+     * Returns unusable objects to the freeList, so the memory
+     * blocks can be reused for other objects.
+     * Here and in any other problem where you have to visit every
+     * memory block in the heap, you can assume that the first
+     * block has address 0 (zero), and that the address of the
+     * next block is addr + getSize(addr), where addr is the address
+     * of the current block */
     private void sweep() {
-        //oppgave 1b
+        // problem 1b
     }
+
 
 
     public void printMemoryMap() {
