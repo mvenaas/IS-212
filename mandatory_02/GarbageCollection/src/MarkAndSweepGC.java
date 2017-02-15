@@ -140,16 +140,13 @@ public class MarkAndSweepGC extends Heap
 //    objects that can be reached from them, and so on.
 //    * Usable objects should only be marked once, there may be more than one path from
 //    root to an object, and there may be loop structures.
-    
+
 
         if (this.getFlag(objAddr) != REACHABLE && this.getFlag(objAddr) != FREE && objAddr > HEAP_SIZE ) {
             this.setFlag(objAddr, GARBAGE);
             mark(this.getSize(objAddr) + objAddr);
             
-        } 
-        
-        
-        // problem 1a
+        }
     }
     /**
      * Returns unusable objects to the freeList, so the memory
