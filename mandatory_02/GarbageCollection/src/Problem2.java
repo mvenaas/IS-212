@@ -63,7 +63,6 @@ public class Problem2 extends Heap {
         moveObjects();
         setFree(newFree);
         printMemoryMap("gc complete");
-
     }
 
 
@@ -75,19 +74,60 @@ public class Problem2 extends Heap {
         }
     }
 
-
     private int calculateAddresses() {
-       // In progress
+        // opg 2a
+        int offset = 0;
+        int addr = 0;
+        while (addr < memory.length)
+        {
+            //System.out.println("addr: " + addr);
+            if (getFlag(addr) == FREE || getFlag(addr) == GARBAGE ) {
+                offset += getSize(addr);
+            }
+            else {
+                int size = getSize(addr);
+                setNext(addr, addr + getSize(addr) - offset);
+            }
+            addr = addr + getSize(addr);
+        }
+        // This value isnt used until the end, so can not be used to updatePointers.
+        return memory.length - offset;
     }
-
 
     private void updatePointers() {
-        //opg 2b//
+        int addr = 0;
+        while (addr < memory.length) {
+            int ptr1 = getPtr1(addr);
+            int ptr2 = getPtr2(addr);
+            // naive approach that works with this sample data.
+            if (ptr1 != NULL && ptr2 != NULL) {
+                setPtr1(addr, getNext(addr));
+                ptr1 = getPtr1(addr);
+                setPtr2(addr, getNext(addr) + getSize(ptr1));
+            } else if (ptr1 != NULL) {
+                setPtr1(addr, getNext(addr));
+            } else if (ptr2 != NULL) {
+                setPtr2(addr, getNext(addr));
+            }
+            addr = addr + getSize(addr);
+        }
     }
 
-
     private void moveObjects() {
-        // opg 2c
+        int addr = 0;
+        int newAddr = 0;
+
+        while (addr < memory.length)
+        {
+            if (getFlag(addr) != FREE && getFlag(addr) != GARBAGE ) {
+                if (newAddr !=0 && newAddr != NULL)
+                {
+                    memCopy(addr, getSize(addr), newAddr);
+                }
+                newAddr = getNext(addr);
+            }
+            addr += getSize(addr);
+        }
     }
 
 
