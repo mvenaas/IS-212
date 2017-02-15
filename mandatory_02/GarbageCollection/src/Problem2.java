@@ -75,12 +75,10 @@ public class Problem2 extends Heap {
     }
 
     private int calculateAddresses() {
-        // opg 2a
         int offset = 0;
         int addr = 0;
         while (addr < memory.length)
         {
-            //System.out.println("addr: " + addr);
             if (getFlag(addr) == FREE || getFlag(addr) == GARBAGE ) {
                 offset += getSize(addr);
             }
@@ -90,7 +88,6 @@ public class Problem2 extends Heap {
             }
             addr = addr + getSize(addr);
         }
-        // This value isnt used until the end, so can not be used to updatePointers.
         return memory.length - offset;
     }
 
@@ -99,7 +96,6 @@ public class Problem2 extends Heap {
         while (addr < memory.length) {
             int ptr1 = getPtr1(addr);
             int ptr2 = getPtr2(addr);
-            // naive approach that works with this sample data.
             if (ptr1 != NULL && ptr2 != NULL) {
                 setPtr1(addr, getNext(addr));
                 ptr1 = getPtr1(addr);
