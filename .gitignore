@@ -11,3 +11,19 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 /mandatory_01/AlgorithmAnalysis1/dist/
+mandatory_02/GarbageCollection/\.idea/
+/mandatory_02/GarbageCollection/nbproject/private/
+/mandatory_02/GarbageCollection/build/
+mandatory_02/\.idea/
+
+mandatory_02/GarbageCollection/build\.xml
+
+mandatory_02/GarbageCollection/manifest\.mf
+
+mandatory_02/GarbageCollection/nbproject/build-impl\.xml
+
+mandatory_02/GarbageCollection/nbproject/
+
+mandatory_01/AlgorithmAnalysis1/nbproject/private/private\.xml
+
+mandatory_02/GarbageCollection/GarbageCollection\.iml

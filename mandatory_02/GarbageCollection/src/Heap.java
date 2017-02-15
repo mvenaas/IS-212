@@ -34,7 +34,6 @@
  */
 public class Heap
 {
-
     public static final int HEAP_SIZE = 100;
     public static final int NULL = -1; // null pointer
 
@@ -142,5 +141,14 @@ public class Heap
         for (int i = dl; i < max; i++) {
             memory[addr + DATA_OFFSET + i] = ' ';
         }
+    }
+    
+    public void printMem(){
+    int index =0;
+    for(int i : memory){
+        System.out.print("Index:"+index+" Value: "+ i + "\n");
+
+        index ++;
+    }
     }
 }

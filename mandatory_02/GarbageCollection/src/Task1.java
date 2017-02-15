@@ -4,7 +4,7 @@
  *
  * @author evenal
  */
-public class MarkAndSweepGC extends Heap
+public class Task1 extends Heap
 {
 
     /**
@@ -13,13 +13,13 @@ public class MarkAndSweepGC extends Heap
     int freeList;
 
 
-    public MarkAndSweepGC() {
+    public Task1() {
         freeList = NULL;
         addToFreeList(0, memory.length);
     }
 
 
-    public MarkAndSweepGC(int size) {
+    public Task1(int size) {
         super(size);
         freeList = NULL;
         addToFreeList(0, memory.length);
@@ -124,58 +124,14 @@ public class MarkAndSweepGC extends Heap
     }
 
 
-    /**
-     * Finds all usable objects, starting from root, and following
-     * non-NULL values in ptr1 and ptr2
-     */
-    private void mark(int objAddr) {
-//    The mark phase
-//    The purpose of the mark phase is to find and mark all objects that can be reached directly or
-//    indirectly from a set of root variables. The root set typically includes at least all local
-//    variables on the call stack, and any static variables. The mark algorithm then becomes:
-//    * Mark all objects as garbage (with a little help from the memory allocation algorithm
-//    this step can be skipped).
-//    * Mark the object pointed to by a variable in the root set as usable.
-//    * Mark the objects that can be reached from the root objects as usable, and then the
-//    objects that can be reached from them, and so on.
-//    * Usable objects should only be marked once, there may be more than one path from
-//    root to an object, and there may be loop structures.
-    
-
-        if (this.getFlag(objAddr) != REACHABLE && this.getFlag(objAddr) != FREE && objAddr > HEAP_SIZE ) {
-            this.setFlag(objAddr, GARBAGE);
-            mark(this.getSize(objAddr) + objAddr);
-            
-        } 
-        
-        
-        // problem 1a
+    private void mark(int block) {
+        // oppgave 1 a
     }
-    /**
-     * Returns unusable objects to the freeList, so the memory
-     * blocks can be reused for other objects.
-     * Here and in any other problem where you have to visit every
-     * memory block in the heap, you can assume that the first
-     * block has address 0 (zero), and that the address of the
-     * next block is addr + getSize(addr), where addr is the address
-     * of the current block */
+
+
     private void sweep() {
-
-        int addr = 0;
-        while ( addr < HEAP_SIZE) {
-
-            if (this.getFlag(addr) == GARBAGE){
-                this.setFlag(addr, FREE);
-            }
-            
-            // next addr.
-            addr = addr + this.getSize(addr);
-            
-        }
-
-        // problem 1b
+        //oppgave 1b
     }
-
 
 
     public void printMemoryMap() {

@@ -69,14 +69,18 @@ public class CompactingGC extends Heap
 
     }
 
-
-    private void mark(int block) {
-        // copy from 1a
+    //
+    // La til printout på points (Tester GitKraken da alt ble fucka når idea mappa var fjerna xD )
+    //
+    private void mark(int objAddr) {
+        System.out.println("point 1 " +this.getPtr1(objAddr));
+        System.out.println("point 2 " +this.getPtr2(objAddr));
     }
 
 
     private int calculateAddresses() {
         // opg 2a
+        return 0;
     }
 
 
