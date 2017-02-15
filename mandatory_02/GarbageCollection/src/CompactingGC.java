@@ -69,28 +69,78 @@ public class CompactingGC extends Heap
 
     }
 
-    //
-    // La til printout på points (Tester GitKraken da alt ble fucka når idea mappa var fjerna xD )
-    //
     private void mark(int objAddr) {
-        System.out.println("point 1 " +this.getPtr1(objAddr));
-        System.out.println("point 2 " +this.getPtr2(objAddr));
+        if (objAddr != NULL) {
+            this.setFlag(objAddr, REACHABLE);
+            mark(this.getPtr1(objAddr));
+            mark(this.getPtr2(objAddr));
+        }
     }
 
-
+//    Calculate addresses and update pointers
+//  When the garbage collector moves an object, it must also set all the variables that point to it to
+//  point to its new location. This is done by looping through all blocks of memory. All blocks
+//  marked as usable will be moved. We are going to pack the objects densely at the start of the
+//  heap, starting at address 0. Each object that is moved will require a block of memory equal to
+//  its size, so the new address and object will be the sum of sizes of the objects that were 
+//  processed before it. The new address must be stored in the object. It will be needed twice:
+//  First to update the variables that point to it, and second when we actually move the object.
+//  To update the pointers, we traverse the heap once again. If a usable object contains pointers to
+//  other objects, they must be set to the new location of the other object
+    /** calculate the addresse each object will be moved to */
     private int calculateAddresses() {
-        // opg 2a
-        return 0;
+        int offset = 0;
+        int addr = 0;
+        while (addr < HEAP_SIZE)
+        {
+            if (getFlag(addr) == FREE || getFlag(addr) == GARBAGE ) {
+                offset += getSize(addr);
+            }
+            else {
+                int size = getSize(addr);
+               setNext(addr, addr + getSize(addr) - offset);
+            }
+           addr = addr + getSize(addr);
+        }
+        return memory.length - offset;
     }
-
-
+   
     private void updatePointers() {
         //opg 2b//
+        int addr = 0;
+        while (addr < memory.length) {
+            int ptr1 = getPtr1(addr);
+            int ptr2 = getPtr2(addr);
+            // naive approach that works with this sample data.
+            if (ptr1 != NULL && ptr2 != NULL) {
+                setPtr1(addr, getNext(addr));
+                ptr1 = getPtr1(addr);
+                setPtr2(addr, getNext(addr) + getSize(ptr1));
+            } else if (ptr1 != NULL) {
+                setPtr1(addr, getNext(addr));
+            } else if (ptr2 != NULL) {
+                setPtr2(addr, getNext(addr));
+            }
+            addr = addr + getSize(addr);
+        }
     }
-
-
+ 
     private void moveObjects() {
         // opg 2c
+        int addr = 0;
+        int newAddr = 0;
+ 
+        while (addr < memory.length)
+        {
+            if (getFlag(addr) != FREE && getFlag(addr) != GARBAGE ) {
+                if (newAddr !=0 && newAddr != NULL)
+                {
+                    memCopy(addr, getSize(addr), newAddr);
+                }
+                newAddr = getNext(addr);
+            }
+            addr += getSize(addr);
+        }
     }
 
 
