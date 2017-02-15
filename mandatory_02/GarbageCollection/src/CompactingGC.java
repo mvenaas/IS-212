@@ -97,7 +97,6 @@ public class CompactingGC extends Heap
                 offset += getSize(addr);
             }
             else {
-                int size = getSize(addr);
                setNext(addr, addr + getSize(addr) - offset);
             }
            addr = addr + getSize(addr);
