@@ -161,8 +161,8 @@ public class MarkAndSweepGC extends Heap
      * of the current block */
     private void sweep() {
 
-        int i = 0;
-        while ( i < HEAP_SIZE) {
+        int addr = 0;
+        while ( addr < HEAP_SIZE) {
 
             if (this.getFlag(i) == GARBAGE){
                 System.out.println(i);
@@ -170,7 +170,7 @@ public class MarkAndSweepGC extends Heap
             }
             
             // next addr.
-            i = i + this.getSize(i);
+            addr = addr + this.getSize(i);
             
         }
 
