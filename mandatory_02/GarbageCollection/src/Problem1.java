@@ -1,25 +1,20 @@
-/**
- * The mark and sweep gc uses the next pointer in the header to
- * create a linked list of unused memory blocks
- *
- * @author evenal
- */
-public class Task1 extends Heap
-{
+import com.sun.org.apache.xpath.internal.SourceTree;
 
-    /**
-     * pointer to the first element in the free list
-     */
+/**
+ * Created by Erlend on 15.02.2017.
+ */
+public class Problem1 extends Heap {
+
     int freeList;
 
 
-    public Task1() {
+    public Problem1() {
         freeList = NULL;
         addToFreeList(0, memory.length);
     }
 
 
-    public Task1(int size) {
+    public Problem1(int size) {
         super(size);
         freeList = NULL;
         addToFreeList(0, memory.length);
@@ -123,14 +118,27 @@ public class Task1 extends Heap
         printMemoryMap();
     }
 
-
+    // Mark object
     private void mark(int block) {
-        // oppgave 1 a
-    }
+        if (block != NULL) {
+            this.setFlag(block, REACHABLE);
+            mark(this.getPtr1(block));
+            mark(this.getPtr2(block));
+        }
+        }
+
 
 
     private void sweep() {
-        //oppgave 1b
+        int addr = 0;
+        while (addr < HEAP_SIZE) {
+
+            if (this.getFlag(addr) == GARBAGE) {
+                this.addToFreeList(addr, getSize(addr));
+            }
+
+            addr = addr + this.getSize(addr);
+        }
     }
 
 
@@ -148,7 +156,7 @@ public class Task1 extends Heap
 
 
     public static void main(String[] args) {
-        MarkAndSweepGC heap = new MarkAndSweepGC();
+        Problem1 heap = new Problem1();
         heap.printMemoryMap();
         System.out.println("Create ROOT");
         int root = heap.alloc(10, NULL, NULL, "ROOT");

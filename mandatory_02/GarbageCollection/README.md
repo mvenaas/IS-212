@@ -2,6 +2,7 @@
 The mark and sweep garbage collector is implemented as a subclass of Heap. Appendix B
 contains the skeleton code for the class. The mark() and sweep() methods must be
 finished.
-a) Write the mark() method according to the description above!
+a) Write the mark()
 
-b) Write the sweep() method!
+
+b) Write the sweep()

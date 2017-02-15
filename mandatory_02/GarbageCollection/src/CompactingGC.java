@@ -3,8 +3,7 @@
  *
  * @author evenal
  */
-public class CompactingGC extends Heap
-{
+public class CompactingGC extends Heap {
 
     /**
      * pointer to the start of the free area
@@ -69,17 +68,13 @@ public class CompactingGC extends Heap
 
     }
 
-    //
-    // La til printout på points (Tester GitKraken da alt ble fucka når idea mappa var fjerna xD )
-    //
-    private void mark(int objAddr) {
-        System.out.println("point 1 " +this.getPtr1(objAddr));
-        System.out.println("point 2 " +this.getPtr2(objAddr));
+
+    private void mark(int block) {
+        // copy from 1a
     }
 
 
     private int calculateAddresses() {
-        // opg 2a
         return 0;
     }
 
