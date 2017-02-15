@@ -135,17 +135,16 @@ public class MarkAndSweepGC extends Heap {
             mark(this.getPtr2(objAddr));
         }
     }
+    private void sweep() {
+        int addr = 0;
+        while (addr < HEAP_SIZE) {
 
-
-            if (this.getFlag(addr) == GARBAGE){
+            if (this.getFlag(addr) == GARBAGE) {
                 this.addToFreeList(addr, getSize(addr));
             }
-            
-            // next addr.
-            addr = addr + this.getSize(addr);
-            
-        }
 
+            addr = addr + this.getSize(addr);
+        }
     }
 
 
