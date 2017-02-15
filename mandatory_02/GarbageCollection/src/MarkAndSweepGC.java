@@ -4,8 +4,7 @@
  *
  * @author evenal
  */
-public class MarkAndSweepGC extends Heap
-{
+public class MarkAndSweepGC extends Heap {
 
     /**
      * pointer to the first element in the free list
@@ -64,6 +63,7 @@ public class MarkAndSweepGC extends Heap
      * @throws OutOfMemory if unable to find a memory block, even
      *                     after garbage collection
      */
+
     public int alloc(int size, int ptr1, int ptr2, String data) {
         int addr = getMemory(size + HEADER_SIZE);
         if (NULL == addr) {
@@ -135,18 +135,7 @@ public class MarkAndSweepGC extends Heap
             mark(this.getPtr2(objAddr));
         }
     }
-    /**
-     * Returns unusable objects to the freeList, so the memory
-     * blocks can be reused for other objects.
-     * Here and in any other problem where you have to visit every
-     * memory block in the heap, you can assume that the first
-     * block has address 0 (zero), and that the address of the
-     * next block is addr + getSize(addr), where addr is the address
-     * of the current block */
-    private void sweep() {
 
-        int addr = 0;
-        while ( addr < HEAP_SIZE) {
 
             if (this.getFlag(addr) == GARBAGE){
                 this.addToFreeList(addr, getSize(addr));
@@ -158,7 +147,6 @@ public class MarkAndSweepGC extends Heap
         }
 
     }
-
 
 
     public void printMemoryMap() {

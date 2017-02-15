@@ -1,9 +1,7 @@
 /**
- * This is an implementation of the LISP2 garbage collector.
- *
- * @author evenal
+ * Created by Erlend on 15.02.2017.
  */
-public class CompactingGC extends Heap {
+public class Problem2 extends Heap {
 
     /**
      * pointer to the start of the free area
@@ -11,12 +9,12 @@ public class CompactingGC extends Heap {
     int free;
 
 
-    public CompactingGC() {
+    public Problem2() {
         setFree(0);
     }
 
 
-    public CompactingGC(int size) {
+    public Problem2(int size) {
         super(size);
         setFree(0);
     }
@@ -65,51 +63,39 @@ public class CompactingGC extends Heap {
         moveObjects();
         setFree(newFree);
         printMemoryMap("gc complete");
-
     }
 
-    private void mark(int objAddr) {
-        if (objAddr != NULL) {
-            this.setFlag(objAddr, REACHABLE);
-            mark(this.getPtr1(objAddr));
-            mark(this.getPtr2(objAddr));
+
+    private void mark(int block) {
+        if (block != NULL) {
+            this.setFlag(block, REACHABLE);
+            mark(this.getPtr1(block));
+            mark(this.getPtr2(block));
         }
     }
 
-//    Calculate addresses and update pointers
-//  When the garbage collector moves an object, it must also set all the variables that point to it to
-//  point to its new location. This is done by looping through all blocks of memory. All blocks
-//  marked as usable will be moved. We are going to pack the objects densely at the start of the
-//  heap, starting at address 0. Each object that is moved will require a block of memory equal to
-//  its size, so the new address and object will be the sum of sizes of the objects that were 
-//  processed before it. The new address must be stored in the object. It will be needed twice:
-//  First to update the variables that point to it, and second when we actually move the object.
-//  To update the pointers, we traverse the heap once again. If a usable object contains pointers to
-//  other objects, they must be set to the new location of the other object
-    /** calculate the addresse each object will be moved to */
     private int calculateAddresses() {
         int offset = 0;
         int addr = 0;
-        while (addr < HEAP_SIZE)
+        while (addr < memory.length)
         {
             if (getFlag(addr) == FREE || getFlag(addr) == GARBAGE ) {
                 offset += getSize(addr);
             }
             else {
-               setNext(addr, addr + getSize(addr) - offset);
+                int size = getSize(addr);
+                setNext(addr, addr + getSize(addr) - offset);
             }
-           addr = addr + getSize(addr);
+            addr = addr + getSize(addr);
         }
         return memory.length - offset;
     }
-   
+
     private void updatePointers() {
-        //opg 2b//
         int addr = 0;
         while (addr < memory.length) {
             int ptr1 = getPtr1(addr);
             int ptr2 = getPtr2(addr);
-            // naive approach that works with this sample data.
             if (ptr1 != NULL && ptr2 != NULL) {
                 setPtr1(addr, getNext(addr));
                 ptr1 = getPtr1(addr);
@@ -122,12 +108,11 @@ public class CompactingGC extends Heap {
             addr = addr + getSize(addr);
         }
     }
- 
+
     private void moveObjects() {
-        // opg 2c
         int addr = 0;
         int newAddr = 0;
- 
+
         while (addr < memory.length)
         {
             if (getFlag(addr) != FREE && getFlag(addr) != GARBAGE ) {
@@ -165,7 +150,7 @@ public class CompactingGC extends Heap {
 
 
     public static void main(String[] args) {
-        CompactingGC heap = new CompactingGC();
+        Problem2 heap = new Problem2();
         heap.printMemoryMap("Start protram");
         System.out.println("Create ROOT");
         int root = heap.alloc(10, NULL, NULL, "ROOT");
