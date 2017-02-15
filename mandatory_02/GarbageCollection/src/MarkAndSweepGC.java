@@ -142,8 +142,9 @@ public class MarkAndSweepGC extends Heap
 //    root to an object, and there may be loop structures.
     
 
-        if (this.getFlag(objAddr) != REACHABLE && this.getFlag(objAddr) != FREE) {
+        if (this.getFlag(objAddr) != REACHABLE && this.getFlag(objAddr) != FREE && objAddr > HEAP_SIZE ) {
             this.setFlag(objAddr, GARBAGE);
+            mark(this.getSize(objAddr) + objAddr);
             
         } 
         
