@@ -125,7 +125,7 @@ public class Problem1 extends Heap {
             mark(this.getPtr1(block));
             mark(this.getPtr2(block));
         }
-        }
+    }
 
 
 
