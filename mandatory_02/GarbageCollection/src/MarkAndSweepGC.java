@@ -164,13 +164,12 @@ public class MarkAndSweepGC extends Heap
         int addr = 0;
         while ( addr < HEAP_SIZE) {
 
-            if (this.getFlag(i) == GARBAGE){
-                System.out.println(i);
-                this.setFlag(i, FREE);
+            if (this.getFlag(addr) == GARBAGE){
+                this.setFlag(addr, FREE);
             }
             
             // next addr.
-            addr = addr + this.getSize(i);
+            addr = addr + this.getSize(addr);
             
         }
 
