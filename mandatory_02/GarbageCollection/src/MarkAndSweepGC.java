@@ -123,14 +123,28 @@ public class MarkAndSweepGC extends Heap {
         printMemoryMap();
     }
 
-// Mark object
-    private void mark(int block) {
-        // oppgave 1 a
+
+    /**
+     * Finds all usable objects, starting from root, and following
+     * non-NULL values in ptr1 and ptr2
+     */
+    private void mark(int objAddr) {
+        if (objAddr != NULL) {
+            this.setFlag(objAddr, REACHABLE);
+            mark(this.getPtr1(objAddr));
+            mark(this.getPtr2(objAddr));
+        }
     }
-
-
     private void sweep() {
-        //oppgave 1b
+        int addr = 0;
+        while (addr < HEAP_SIZE) {
+
+            if (this.getFlag(addr) == GARBAGE) {
+                this.addToFreeList(addr, getSize(addr));
+            }
+
+            addr = addr + this.getSize(addr);
+        }
     }
 
 
