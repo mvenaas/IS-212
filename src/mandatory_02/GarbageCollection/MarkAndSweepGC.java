@@ -1,3 +1,5 @@
+package mandatory_02.GarbageCollection;
+
 /**
  * The mark and sweep gc uses the next pointer in the header to
  * create a linked list of unused memory blocks

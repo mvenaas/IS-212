@@ -1,3 +1,5 @@
+package mandatory_02.GarbageCollection;
+
 /**
  * This class is the memory model for the exam. Memory is represented
  * by the int array memory. The memory is partitioned into blocks,

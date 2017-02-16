@@ -1,3 +1,5 @@
+package mandatory_02.GarbageCollection;
+
 /**
  * This is an implementation of the LISP2 garbage collector.
  *

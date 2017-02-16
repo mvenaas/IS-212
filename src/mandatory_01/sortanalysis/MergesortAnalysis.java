@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mandatory_01.AlgorithmAnalysis1.src.is211.alganalysis;
+package mandatory_01.code;
 
 import java.util.Arrays;
 

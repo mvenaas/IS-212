@@ -1,4 +1,4 @@
-import com.sun.org.apache.xpath.internal.SourceTree;
+package mandatory_02.GarbageCollection;
 
 /**
  * Created by Erlend on 15.02.2017.
