@@ -1,6 +1,5 @@
 package mandatory_03;
 
-
 public class Hp11cEngine implements CalculatorEngine {
     private String title = "Mandatory 3 - IS-211";
     private String author = "Christiand og Erlend";
@@ -8,13 +7,17 @@ public class Hp11cEngine implements CalculatorEngine {
     private Stack<String> stack;
     private Stack<String> decimal;
     private String displayValue;
+    private String emptyStack = "Empty stack";
     private int currentNumber;
     private boolean enteringDecimal;
+    private boolean stacked;
 
     public Hp11cEngine() {
         this.stack = new Stack<>(10);
         this.decimal = new Stack<>(10);
         this.enteringDecimal = false;
+        this.stacked = false;
+
     }
 
     @Override
@@ -25,42 +28,58 @@ public class Hp11cEngine implements CalculatorEngine {
 
     @Override
     public void pointPressed() {
-        if (getStackNumbers() % 1 == 0 && decimal.getSize() > 0) { // check if decimal is in there already
-            if (enteringDecimal) enteringDecimal = false;
-            else enteringDecimal = true;
+        if (stacked){
+            if (getStackNumbers() % 1 == 0 && decimal.getSize() > 0) { // check if decimal is in there already
+                if (enteringDecimal) enteringDecimal = false;
+                else enteringDecimal = true;
+            }
+        }
+        else {
+            this.displayValue = emptyStack;
         }
     }
 
     @Override
     public void chsPressed() {
-        double numbers = getStackNumbers();
-        if (numbers < 0) // make to postive
-            numbers = Math.abs(numbers);
-        else {
-            numbers = Math.abs(numbers) * -1;
+        if (stacked) {
+            double numbers = getStackNumbers();
+            if (numbers < 0) // make to postive
+                numbers = Math.abs(numbers);
+            else {
+                numbers = Math.abs(numbers) * -1;
+            }
+
+            parseIntoStack(numbers);
+
+            displayValue = String.valueOf(numbers);
+        } else {
+            this.displayValue = emptyStack;
         }
-
-        parseIntoStack(numbers);
-
-        displayValue = String.valueOf(numbers);
     }
 
     @Override
     public void clearPressed() {
+        this.stacked = false;
         this.stack = new Stack<>(10);
         this.decimal = new Stack<>(10);
         displayValue = "";
         this.enteringDecimal = false;
+
     }
 
     @Override
     public void plusPressed() {
-        enteringDecimal = false;                                // now, prevent entering decimal for ever..
-        if (currentNumber != 0) {
-            double result = getStackNumbers() + currentNumber;     // get numbers from stack and add the current number
-            displayValue = result + "";                         // for displaying the number
-            parseIntoStack(result);                             // parse it into the stack again
-            currentNumber = 0;
+        if (stacked){
+            enteringDecimal = false;                                // now, prevent entering decimal for ever..
+            if (currentNumber != 0) {
+                double result = getStackNumbers() + currentNumber;     // get numbers from stack and add the current number
+                displayValue = result + "";                         // for displaying the number
+                parseIntoStack(result);                             // parse it into the stack again
+                currentNumber = 0;
+            }
+        }
+        else {
+            this.displayValue = emptyStack;
         }
     }
 
@@ -77,29 +96,40 @@ public class Hp11cEngine implements CalculatorEngine {
 
     @Override
     public void multiplyPressed() {
-        enteringDecimal = false;                                // now, prevent entering decimal for ever..
-        if (currentNumber != 0) {
-            double result = getStackNumbers() * currentNumber;     // get numbers from stack and multiply the current number
-            displayValue = result + "";                         // for displaying the number
-            parseIntoStack(result);                             // parse it into the stack again
-            currentNumber = 0;
+        if (stacked){
+            enteringDecimal = false;                                // now, prevent entering decimal for ever..
+            if (currentNumber != 0) {
+                double result = getStackNumbers() * currentNumber;     // get numbers from stack and multiply the current number
+                displayValue = result + "";                         // for displaying the number
+                parseIntoStack(result);                             // parse it into the stack again
+                currentNumber = 0;
+            }
+        }
+        else {
+            this.displayValue = emptyStack;
         }
     }
 
     @Override
     public void dividePressed() {
-        enteringDecimal = false;                                // now, prevent entering decimal for ever..
-        if (currentNumber != 0) {
-            double result = getStackNumbers() / currentNumber;     // get numbers from stack and divide the current number
-            System.out.println(result);
-            displayValue = String.valueOf(result);                 // for displaying the number
-            parseIntoStack(result);                                // parse it into the stack again
-            currentNumber = 0;
+        if (stacked) {
+            enteringDecimal = false;                                // now, prevent entering decimal for ever..
+            if (currentNumber != 0) {
+                double result = getStackNumbers() / currentNumber;     // get numbers from stack and divide the current number
+                System.out.println(result);
+                displayValue = String.valueOf(result);                 // for displaying the number
+                parseIntoStack(result);                                // parse it into the stack again
+                currentNumber = 0;
+            }
+        }
+        else {
+            this.displayValue = emptyStack;
         }
     }
 
     @Override
     public void enterPressed() {
+        this.stacked = true;
         if (!enteringDecimal) {
             stack.add(Integer.toString(currentNumber));
             System.out.println("added to stack");
