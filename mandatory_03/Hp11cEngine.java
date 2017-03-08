@@ -17,7 +17,6 @@ public class Hp11cEngine implements CalculatorEngine {
         this.decimal = new Stack<>(10);
         this.enteringDecimal = false;
         this.stacked = false;
-
     }
 
     @Override
