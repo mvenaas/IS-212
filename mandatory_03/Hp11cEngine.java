@@ -1,5 +1,3 @@
-package mandatory_03;
-
 public class Hp11cEngine implements CalculatorEngine {
     private String title = "Mandatory 3 - IS-211";
     private String author = "Christiand og Erlend";
@@ -22,18 +20,17 @@ public class Hp11cEngine implements CalculatorEngine {
     @Override
     public void numberPressed(int number) {
         currentNumber = number;
-        displayValue = number +"";
+        displayValue = number + "";
     }
 
     @Override
     public void pointPressed() {
-        if (stacked){
+        if (stacked) {
             if (getStackNumbers() % 1 == 0 && decimal.getSize() > 0) { // check if decimal is in there already
                 if (enteringDecimal) enteringDecimal = false;
                 else enteringDecimal = true;
             }
-        }
-        else {
+        } else {
             this.displayValue = emptyStack;
         }
     }
@@ -58,17 +55,15 @@ public class Hp11cEngine implements CalculatorEngine {
 
     @Override
     public void clearPressed() {
-        this.stacked = false;
         this.stack = new Stack<>(10);
         this.decimal = new Stack<>(10);
         displayValue = "";
         this.enteringDecimal = false;
-
     }
 
     @Override
     public void plusPressed() {
-        if (stacked){
+        if (stacked) {
             enteringDecimal = false;                                // now, prevent entering decimal for ever..
             if (currentNumber != 0) {
                 double result = getStackNumbers() + currentNumber;     // get numbers from stack and add the current number
@@ -76,26 +71,29 @@ public class Hp11cEngine implements CalculatorEngine {
                 parseIntoStack(result);                             // parse it into the stack again
                 currentNumber = 0;
             }
-        }
-        else {
+        } else {
             this.displayValue = emptyStack;
         }
     }
 
     @Override
     public void minusPressed() {
-        enteringDecimal = false;                                // now, prevent entering decimal for ever..
-        if (currentNumber != 0) {
-            double result = getStackNumbers() - currentNumber;     // get numbers from stack and subtract the current number
-            displayValue = result + "";                         // for displaying the number
-            parseIntoStack(result);                             // parse it into the stack again
-            currentNumber = 0;
+        if (stacked) {
+            enteringDecimal = false;                                // now, prevent entering decimal for ever..
+            if (currentNumber != 0) {
+                double result = getStackNumbers() - currentNumber;     // get numbers from stack and subtract the current number
+                displayValue = result + "";                         // for displaying the number
+                parseIntoStack(result);                             // parse it into the stack again
+                currentNumber = 0;
+            }
+        } else {
+            this.displayValue = emptyStack;
         }
     }
 
     @Override
     public void multiplyPressed() {
-        if (stacked){
+        if (stacked) {
             enteringDecimal = false;                                // now, prevent entering decimal for ever..
             if (currentNumber != 0) {
                 double result = getStackNumbers() * currentNumber;     // get numbers from stack and multiply the current number
@@ -103,8 +101,7 @@ public class Hp11cEngine implements CalculatorEngine {
                 parseIntoStack(result);                             // parse it into the stack again
                 currentNumber = 0;
             }
-        }
-        else {
+        } else {
             this.displayValue = emptyStack;
         }
     }
@@ -120,8 +117,7 @@ public class Hp11cEngine implements CalculatorEngine {
                 parseIntoStack(result);                                // parse it into the stack again
                 currentNumber = 0;
             }
-        }
-        else {
+        } else {
             this.displayValue = emptyStack;
         }
     }
@@ -132,8 +128,7 @@ public class Hp11cEngine implements CalculatorEngine {
         if (!enteringDecimal) {
             stack.add(Integer.toString(currentNumber));
             System.out.println("added to stack");
-        }
-        else {
+        } else {
             if (getStackNumbers() % 1 == 0 && decimal.getSize() > 0) decimal.getFirst();
             decimal.add(Integer.toString(currentNumber));
             System.out.println("added to decimal");
@@ -171,7 +166,7 @@ public class Hp11cEngine implements CalculatorEngine {
         while (0 < decimal.getSize()) {
             number_formating = decimal.getFirst() + number_formating;
         }
-        if (number_formating.length() > 0) number_formating = "" + number_formating;
+        if (number_formating.length() > 0) number_formating = "." + number_formating;
 
         while (0 < stack.getSize()) {
             number_formating = stack.getFirst() + number_formating;
@@ -179,18 +174,20 @@ public class Hp11cEngine implements CalculatorEngine {
         System.out.println(number_formating);
         return Double.parseDouble(number_formating);
     }
+
     private void parseIntoStack(double numbers) {
         String stringNumber = numbers + "";
         boolean isDecimal = false;
-        for (char ch: stringNumber.toCharArray()) {
+        for (char ch : stringNumber.toCharArray()) {
             if (!isDecimal)
                 if (ch != '.')
-                    stack.add(ch +"");
+                    stack.add(ch + "");
                 else
                     isDecimal = true;
             else {
-                decimal.add(ch +"");
+                decimal.add(ch + "");
             }
         }
     }
+
 }

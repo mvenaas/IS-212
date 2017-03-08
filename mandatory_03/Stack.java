@@ -1,5 +1,3 @@
-package mandatory_03;
-
 /**
  * Created by Christian on 3/7/2017.
  */
@@ -68,3 +66,4 @@ public class Stack <E> {
 
 
 }
+

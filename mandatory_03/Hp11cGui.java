@@ -1,4 +1,4 @@
-package mandatory_03;
+
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.*;
@@ -80,8 +80,9 @@ public class Hp11cGui {
         addButton(buttonPanel, "-", () -> calc.minusPressed());
 
         addButton(buttonPanel, "ENTER", () -> calc.enterPressed());
+        buttonPanel.add(new JLabel(" "));
         addNumberButton(buttonPanel, 0);
-        addButton(buttonPanel, "", () -> calc.pointPressed());
+        //addButton(buttonPanel, ".", () -> calc.pointPressed());
         buttonPanel.add(new JLabel(" "));
         addButton(buttonPanel, "+", () -> calc.plusPressed());
 
@@ -89,7 +90,7 @@ public class Hp11cGui {
 
         status = new JLabel(calc.getAuthor());
         contentPane.add(status, BorderLayout.SOUTH);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); // FIXER CLOSE ISSUE!!!
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.pack();
     }
 
