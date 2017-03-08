@@ -1,46 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>IS-211 Mandatory 3</title>
-        <meta charset="UTF-8"/>
-        <style type="text/css">
-            body {
-                border: thin solid black;
-                margin: auto;
-                padding: 25px;
-                padding-top: 0;
-                font-size: 12pt;
-                width: 75ex;  
-            }
-
-            h1, h2, h3 {
-                padding-top: 1em;
-                padding-bottom: 0;
-                margin: 0;
-            }
-
-            table.plain {
-                border-width : thin;
-                border-style : solid;
-                border-collapse : collapse;
-                border-color : black;
-            }
-            table.plain td,
-            table.plain th {
-                border-width : thin;
-                border-style : solid;
-                vertical-align : top;
-                padding : 3px;
-            }            
-        </style>
-    </head>
-    <body>
         <h1>IS-211 Mandatory 3</h1>
         <p>This mandatory is an exercise in using stacks. Your task is to
            complete a simple calculator program, by implementing the
@@ -81,6 +38,4 @@ and open the template in the editor.
             except the left arrow which is the delete key.</p>
         <h2>Innlevering</h2>
         <p>Innleveringsfristen er torsdag 9. mars. Lever en zip/jar fil med kildekoden i innleveringsmappa i fronter
-        </p>
-    </body>
-</html>
+
