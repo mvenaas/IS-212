@@ -1,4 +1,4 @@
-package mandatory3;
+package mandatory_03;
 
 
 public class Hp11cEngine implements CalculatorEngine {
@@ -142,7 +142,7 @@ public class Hp11cEngine implements CalculatorEngine {
         while (0 < decimal.getSize()) {
             number_formating = decimal.getFirst() + number_formating;
         }
-        if (number_formating.length() > 0) number_formating = "." + number_formating;
+        if (number_formating.length() > 0) number_formating = "" + number_formating;
 
         while (0 < stack.getSize()) {
             number_formating = stack.getFirst() + number_formating;
