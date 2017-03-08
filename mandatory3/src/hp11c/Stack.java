@@ -33,7 +33,8 @@ public class Stack <E> {
      * Legger til et item i stack'en..
      * @param e     elementet som skal legges til..
      */
-    public void add(E e) {
+    public void add(E e){
+        if ((size+1) == max) throw new StackOverflowError("Max items in stack is reached");
         StackItem<E> old = currTop;             // lagre den gammle toppen
         currTop = new StackItem<>();           // opprette en ny en
         currTop.e = e;                          // legge til objektet til den nye toppen
