@@ -15,7 +15,7 @@ mandatory_02/GarbageCollection/\.idea/
 /mandatory_02/GarbageCollection/nbproject/private/
 /mandatory_02/GarbageCollection/build/
 mandatory_02/\.idea/
-
+/out/
 mandatory_02/GarbageCollection/build\.xml
 
 mandatory_02/GarbageCollection/manifest\.mf

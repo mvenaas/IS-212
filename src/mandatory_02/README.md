@@ -1,6 +1,6 @@
 # Problem 1: 
 ####Mark and sweep GC
-The mark and sweep garbage collector is implemented as a subclass of Heap. Appendix B
+The mark and sweep garbage collector is implemented as a subclass of mandatory_02.garbagecollection.Heap. Appendix B
 contains the skeleton code for the class. The mark() and sweep() methods must be
 finished.
 

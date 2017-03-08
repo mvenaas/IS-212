@@ -1,4 +1,4 @@
-package mandatory_02.GarbageCollection;
+package mandatory_02.garbagecollection;
 
 /**
  * Created by Erlend on 15.02.2017.
@@ -85,7 +85,6 @@ public class Problem2 extends Heap {
                 offset += getSize(addr);
             }
             else {
-                int size = getSize(addr);
                 setNext(addr, addr + getSize(addr) - offset);
             }
             addr = addr + getSize(addr);
@@ -169,9 +168,9 @@ public class Problem2 extends Heap {
         System.out.println("Create k2");
         int branch2 = heap.alloc(7, NULL, NULL, "keep2");
         heap.setPtr2(root, branch2);
-        heap.printMemoryMap("Created keep2");
+        heap.printMemoryMap("Created keep3");
         System.out.println("Create k22");
-        int branch22 = heap.alloc(8, NULL, NULL, "keep22");
+        int branch22 = heap.alloc(8, NULL, NULL, "keep3");
         heap.setPtr2(branch2, branch22);
         heap.printMemoryMap("About to trigger gc");
         System.out.println("Create tmp3");

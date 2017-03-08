@@ -1,11 +1,11 @@
-package mandatory_02.GarbageCollection;
+package mandatory_02.garbagecollection;
 
 /**
  * This is an implementation of the LISP2 garbage collector.
  *
  * @author evenal
  */
-public class CompactingGC extends Heap {
+public class CompactingGC extends Heap{
 
     /**
      * pointer to the start of the free area

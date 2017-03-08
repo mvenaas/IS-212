@@ -1,4 +1,4 @@
-package mandatory_02.GarbageCollection;
+package mandatory_02.garbagecollection;
 
 /**
  * Created by Erlend on 15.02.2017.

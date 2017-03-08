@@ -1,4 +1,4 @@
-package mandatory_02.GarbageCollection;
+package mandatory_02.garbagecollection;
 
 /**
  * The mark and sweep gc uses the next pointer in the header to

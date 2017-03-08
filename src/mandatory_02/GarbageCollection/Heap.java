@@ -1,4 +1,4 @@
-package mandatory_02.GarbageCollection;
+package mandatory_02.garbagecollection;
 
 /**
  * This class is the memory model for the exam. Memory is represented
