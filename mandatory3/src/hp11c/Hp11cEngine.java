@@ -44,7 +44,16 @@ public class Hp11cEngine implements CalculatorEngine{
     }
 
     public void chsPressed() {
+        double numbers = getStackNumbers();
+        if (numbers < 0) // make to postive
+            numbers = Math.abs(numbers);
+        else {
+            numbers = Math.abs(numbers) * -1;
+        }
 
+        parseIntoStack(numbers);
+
+        displayValue = String.valueOf(numbers);
     }
 
     public void multiplyPressed() {
