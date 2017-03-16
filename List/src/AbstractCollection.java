@@ -1,4 +1,3 @@
-package no.uia.is207.util;
 
 import java.util.Iterator;
 

@@ -1,4 +1,4 @@
-package no.uia.is207.util;
+
 
 import java.util.Iterator;
 import java.util.ListIterator;
