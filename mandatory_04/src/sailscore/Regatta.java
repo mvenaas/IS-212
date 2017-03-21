@@ -30,7 +30,6 @@ public class Regatta {
         }
         sortResults(laps);
         finalResult(laps);
-
     }
 
     public void addCompetitor(String name, int sailid) {
@@ -42,7 +41,6 @@ public class Regatta {
         System.out.format("%20s%10s\n", "Competitor", "ID");
         System.out.println("");
         for (Competitor list : list) {
-
             String name = list.getName();
             int id = list.getSailid();
             System.out.format("%20s%10d\n", name, id);
@@ -64,8 +62,6 @@ public class Regatta {
 
     public void sortResults(int laps) {
         for (Competitor list : list) {
-            String name = list.getName();
-            int id = list.getSailid();
             int sum = 0;
             for (int i = 0; i < list.getScore().size(); i++) {
                 sum = sum + list.getScore().get(i).hashCode();
@@ -80,7 +76,6 @@ public class Regatta {
         System.out.format("%15s%15s%25s%15s\n", "Name", "Sail ID", "Stage results:", "Total score:");
         for (Competitor list : list) {
             System.out.format("%15s%15d%25s%15d\n", list.getName(), list.getSailid(), list.getScore(), list.getFinalScore());
-
         }
 
     }

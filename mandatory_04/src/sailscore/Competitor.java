@@ -10,7 +10,7 @@ public class Competitor {
     String name;
     int sailid;
     int finalScore;
-    LinkedList score = new LinkedList();
+    LinkedList<Integer> score = new LinkedList();
 
     public int getFinalScore() {
         return finalScore;

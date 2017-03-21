@@ -96,6 +96,7 @@ public class Heap<E extends Comparable<E>> implements Collection<E> {
         heap.set(i, obj);
     }
 
+
     public boolean offer(E e) {
         return add(e);
     }
