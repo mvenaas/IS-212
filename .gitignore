@@ -30,3 +30,8 @@ mandatory_02/GarbageCollection/GarbageCollection\.iml
 
 List/\.idea/
 /mandatory3/Mandatory_3/nbproject/private/
+\.idea/
+
+mandatory_04/mandatory_04\.iml
+
+*.iml
