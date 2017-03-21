@@ -9,7 +9,6 @@ import java.util.*;
 public class Regatta {
 
     List<Competitor> list = new ArrayList<>();
-    List finalResults = new ArrayList();
 
 
     public Regatta(int laps) {
@@ -28,7 +27,7 @@ public class Regatta {
             newRace();
             registerFinish();
         }
-        sortResults(laps);
+        sortResults();
         finalResult(laps);
     }
 
@@ -54,13 +53,15 @@ public class Regatta {
     }
 
     public void registerFinish() {
-        for (int i = 0; i < list.size(); i++) {
+        Random generator = new Random();
+        int random = generator.nextInt(5);
+        for (int i = 0; i < list.size()-random; i++) {
             int position = i + 1;
             list.get(i).addScore(position);
         }
     }
 
-    public void sortResults(int laps) {
+    public void sortResults() {
         for (Competitor list : list) {
             int sum = 0;
             for (int i = 0; i < list.getScore().size(); i++) {
@@ -69,6 +70,7 @@ public class Regatta {
             }
         }
     }
+
 
     public void finalResult(int laps) {
         list.sort(Comparator.comparing(Competitor::getFinalScore).reversed());
