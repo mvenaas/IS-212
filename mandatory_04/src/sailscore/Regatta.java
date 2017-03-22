@@ -3,13 +3,12 @@ package sailscore;
 import java.util.*;
 
 /**
- * Created by Erlend on 14.03.2017.
+ * Created by Erlend & Christian on 14.03.2017.
  */
 
 public class Regatta {
 
     List<Competitor> list = new ArrayList<>();
-
 
     public Regatta(int laps) {
         addCompetitor("Bulbasaur", 101);
@@ -55,7 +54,7 @@ public class Regatta {
     public void registerFinish() {
         Random generator = new Random();
         int random = generator.nextInt(5);
-        for (int i = 0; i < list.size()-random; i++) {
+        for (int i = 0; i < list.size() - random; i++) {
             int position = i + 1;
             list.get(i).addScore(position);
         }
@@ -71,8 +70,7 @@ public class Regatta {
         }
     }
 
-
-    public void finalResult(int laps) {
+     public void finalResult(int laps) {
         list.sort(Comparator.comparing(Competitor::getFinalScore).reversed());
         System.out.println("Final score after " + laps + " stages regatta:");
         System.out.format("%15s%15s%25s%15s\n", "Name", "Sail ID", "Stage results:", "Total score:");
