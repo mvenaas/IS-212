@@ -21,7 +21,7 @@ public class Main {
      * Get the next prioritised customer..
      * @return  queueSpot object cointaining the customer and checkout time.
      */
-    public QueueSpot getNextCustomerInQueue() {
+    private QueueSpot getNextCustomerInQueue() {
         QueueSpot nextInLine = null;
         for (QueueSpot spot : queue) {
             if (nextInLine != null) {
@@ -46,14 +46,18 @@ public class Main {
         for (String name : names) {
             Customer customer = new Customer(name);
 
-            Time storeTime = Time.valueOf("12:00:00");
-            storeTime.setTime(time + new Random().nextInt(3000));
+            // enter time
+            Time enterStoreTime = Time.valueOf("12:00:00");
+            enterStoreTime.setTime(time + new Random().nextInt(3000));
+            System.out.println(enterStoreTime + ": Kunden " + customer.name + " kom inn i butikken");
 
+            // checkout time
             Time checkoutTime = Time.valueOf("12:00:00");
             checkoutTime.setTime(time + new Random().nextInt(50000000));
 
+            // add to queue
             queue.add(new QueueSpot(customer, checkoutTime));
-            System.out.println(storeTime + ": Kunden " + customer.name + " kom inn i butikken");
+
         }
     }
 
