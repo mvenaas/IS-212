@@ -66,10 +66,11 @@ public class Main {
      */
     private void processCustomers() {
         while (!queue.isEmpty()) {
+            // Priority queue gives out a customer -> checkout the customer
             QueueSpot queueSpot = getNextCustomerInQueue();
             System.out.println(queueSpot.time+ ": " + queueSpot.customer.name + ", gikk til kassen: ");
-
-
+            
+            // customer has been dealt with, now print out some exit text with a timestamp..
             queueSpot.time.setTime(queueSpot.time.getTime() + new Random().nextInt(800000));
             System.out.println(queueSpot.time+ ": " +queueSpot.customer.name + ", gikk ut av butikken");
         }
