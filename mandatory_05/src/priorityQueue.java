@@ -10,6 +10,13 @@ public class Main {
 
     List<QueueSpot> queue = new ArrayList<>();
 
+    public static void main(String[] args) {
+        Main main = new Main();
+        main.customerWalksIn();
+        main.processCustomers();
+
+    }
+
     /**
      * Get the next prioritised customer..
      * @return  queueSpot object cointaining the customer and checkout time.
@@ -64,13 +71,6 @@ public class Main {
                 System.out.println(e);
             }
         }
-    }
-
-    public static void main(String[] args) {
-        Main main = new Main();
-        main.customerWalksIn();
-        main.processCustomers();
-
     }
 
     /**
