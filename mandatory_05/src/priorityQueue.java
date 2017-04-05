@@ -10,13 +10,15 @@ public class Main {
 
     List<QueueSpot> queue = new ArrayList<>();
 
+    /**
+     * Get the next prioritised customer..
+     * @return  queueSpot object cointaining the customer and checkout time.
+     */
     private QueueSpot getNextCustomerInQueue() {
         QueueSpot nextInLine = null;
         for (QueueSpot spot : queue) {
-            if (nextInLine != null) {
-                if (spot.time.before(nextInLine.time)) {
-                    nextInLine = spot;
-                }
+            if (nextInLine != null && spot.time.before(nextInLine.time)) {
+                nextInLine = spot;
             } else {
                 nextInLine = spot;
             }
@@ -25,7 +27,9 @@ public class Main {
         return nextInLine;
     }
 
-
+    /**
+     * Simulate some customers to enter our store and to our queue
+     */
     private void customerWalksIn() {
         String[] names = {"Christian", "Erlend", "martin", "Hallgeir", "Even", "Sindre", "Moen", "Pelle", "Kåre", "Peter"};
 
@@ -40,9 +44,11 @@ public class Main {
             queue.add(new QueueSpot(customer, tidspunkt));
             System.out.println(tidIButikken + ": Kunden " + customer.name + " kom inn i butikken");
         }
-
-
     }
+
+    /**
+     * Handle the customers to the priority queue is empty.
+     */
     private void processCustomers() {
         while (!queue.isEmpty()) {
             try {
@@ -59,6 +65,7 @@ public class Main {
             }
         }
     }
+
     public static void main(String[] args) {
         Main main = new Main();
         main.customerWalksIn();
@@ -66,6 +73,9 @@ public class Main {
 
     }
 
+    /**
+     * A class containing the customer
+     */
     private static class Customer {
         String name;
 
@@ -74,6 +84,9 @@ public class Main {
         }
     }
 
+    /**
+     * Class to hold the time and the customer, so we later can compare it in the queue
+     */
     private static class QueueSpot{
         public Customer customer;
         public Time time;
