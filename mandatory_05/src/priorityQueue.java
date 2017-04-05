@@ -13,10 +13,8 @@ public class Main {
     public QueueSpot getNextCustomerInQueue() {
         QueueSpot nextInLine = null;
         for (QueueSpot spot : queue) {
-            if (nextInLine != null) {
-                if (spot.time.getTime() <  nextInLine.time.getTime()) {
-                    nextInLine = spot;
-                }
+            if (nextInLine != null && spot.time.getTime() <  nextInLine.time.getTime()) {
+                nextInLine = spot;
             } else {
                 nextInLine = spot;
             }
@@ -24,7 +22,7 @@ public class Main {
         queue.remove(nextInLine);
         return nextInLine;
     }
-    
+
     private void customerWalksIn() {
         String[] names = {"Christian", "Erlend", "martin", "Hallgeir", "Even", "Sindre", "Moen", "Pelle", "Kåre", "Peter"};
 
