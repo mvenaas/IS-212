@@ -1,18 +1,20 @@
+package com.company;
+
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class Main {
-
-    private final int KASSETID = 1000; // 1000 millisekunder PR KUNDE I KASSEN.
+    private long time = 32400000;
 
     List<QueueSpot> queue = new ArrayList<>();
 
-    public Customer getNextCustomerInQueue() {
+    public QueueSpot getNextCustomerInQueue() {
         QueueSpot nextInLine = null;
         for (QueueSpot spot : queue) {
             if (nextInLine != null) {
-                if (spot.time <  nextInLine.time) {
+                if (spot.time.getTime() <  nextInLine.time.getTime()) {
                     nextInLine = spot;
                 }
             } else {
@@ -20,58 +22,51 @@ public class Main {
             }
         }
         queue.remove(nextInLine);
-        return nextInLine.customer;
+        return nextInLine;
     }
 
 
     private void customerWalksIn() {
         String[] names = {"Christian", "Erlend", "martin", "Hallgeir", "Even", "Sindre", "Moen", "Pelle", "Kåre", "Peter"};
 
-        Customer customer = new Customer(
-                names[new Random().nextInt(names.length)]
-        );
-        Long tidIButikken = new Random().nextLong();
-        queue.add(new QueueSpot(customer, tidIButikken));
-        System.out.println("Kunden " + customer.name + " kom inn i butikken");
+        for (String name : names) {
+            Customer customer = new Customer(name);
+            Time tidIButikken = Time.valueOf("12:00:00");
+            tidIButikken.setTime(time);
+            Random rnd = new Random();
+            tidIButikken.setTime(time + rnd.nextInt(3000));
+            Time tidspunkt = Time.valueOf("12:00:00");
+            tidspunkt.setTime(time + new Random().nextInt(50000000));
+            queue.add(new QueueSpot(customer, tidspunkt));
+            System.out.println(tidIButikken + ": Kunden " + customer.name + " kom inn i butikken");
+        }
+
+
     }
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
         Main main = new Main();
 
 
-        Runnable cashRegister = () -> {
-            while (true) {
-                try {
-                    while (!main.queue.isEmpty()) {
-                        System.out.println("Neste i kassen er : " + main.getNextCustomerInQueue().name);
-                        Thread.sleep(main.KASSETID);
-                    }
 
-                    Thread.sleep(1000); // to get the queue to stack up again..
-                }catch (Exception e) {
-                    System.out.println(e);
-                }
+
+        main.customerWalksIn();
+
+        //main.time += 10000;
+        while (!main.queue.isEmpty()) {
+            try {
+                QueueSpot queueSpot = main.getNextCustomerInQueue();
+                System.out.println(queueSpot.time+ ": " + queueSpot.customer.name + ", gikk til kassen: ");
+
+
+                queueSpot.time.setTime(queueSpot.time.getTime() + new Random().nextInt(800000));
+                System.out.println(queueSpot.time+ ": " +queueSpot.customer.name + ", gikk ut av butikken");
+
+
+            }catch (Exception e) {
+                System.out.println(e);
             }
-        };
-
-        Runnable customerEntersStore = () -> {
-            while (true) {
-                try {
-
-                    main.customerWalksIn();
-                    Thread.sleep(500); // to get the queue to stack up again..
-
-                }catch (Exception e) {
-                    System.out.println("Enter store error");
-                    System.out.println(e);
-                }
-            }
-        };
-
-        Thread thread = new Thread(customerEntersStore);
-        thread.start();
-        thread = new Thread(cashRegister);
-        thread.start();
+        }
     }
 
     public static class Customer {
@@ -84,9 +79,9 @@ public class Main {
 
     public static class QueueSpot{
         public Customer customer;
-        public Long time;
+        public Time time;
 
-        public QueueSpot(Customer customer, Long time) {
+        public QueueSpot(Customer customer, Time time) {
             this.customer = customer;
             this.time = time;
         }
