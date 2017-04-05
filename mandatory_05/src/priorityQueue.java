@@ -66,18 +66,12 @@ public class Main {
      */
     private void processCustomers() {
         while (!queue.isEmpty()) {
-            try {
-                QueueSpot queueSpot = getNextCustomerInQueue();
-                System.out.println(queueSpot.time+ ": " + queueSpot.customer.name + ", gikk til kassen: ");
+            QueueSpot queueSpot = getNextCustomerInQueue();
+            System.out.println(queueSpot.time+ ": " + queueSpot.customer.name + ", gikk til kassen: ");
 
 
-                queueSpot.time.setTime(queueSpot.time.getTime() + new Random().nextInt(800000));
-                System.out.println(queueSpot.time+ ": " +queueSpot.customer.name + ", gikk ut av butikken");
-
-
-            }catch (Exception e) {
-                System.out.println(e);
-            }
+            queueSpot.time.setTime(queueSpot.time.getTime() + new Random().nextInt(800000));
+            System.out.println(queueSpot.time+ ": " +queueSpot.customer.name + ", gikk ut av butikken");
         }
     }
 
