@@ -21,11 +21,13 @@ public class Main {
      * Get the next prioritised customer..
      * @return  queueSpot object cointaining the customer and checkout time.
      */
-    private QueueSpot getNextCustomerInQueue() {
+    public QueueSpot getNextCustomerInQueue() {
         QueueSpot nextInLine = null;
         for (QueueSpot spot : queue) {
-            if (nextInLine != null && spot.time.before(nextInLine.time)) {
-                nextInLine = spot;
+            if (nextInLine != null) {
+                if (spot.time.getTime() <  nextInLine.time.getTime()) {
+                    nextInLine = spot;
+                }
             } else {
                 nextInLine = spot;
             }
@@ -33,6 +35,7 @@ public class Main {
         queue.remove(nextInLine);
         return nextInLine;
     }
+
 
     /**
      * Simulate some customers to enter our store and to our queue
@@ -42,14 +45,15 @@ public class Main {
 
         for (String name : names) {
             Customer customer = new Customer(name);
-            Time tidIButikken = Time.valueOf("12:00:00");
-            tidIButikken.setTime(time);
-            Random rnd = new Random();
-            tidIButikken.setTime(time + rnd.nextInt(3000));
-            Time tidspunkt = Time.valueOf("12:00:00");
-            tidspunkt.setTime(time + new Random().nextInt(50000000));
-            queue.add(new QueueSpot(customer, tidspunkt));
-            System.out.println(tidIButikken + ": Kunden " + customer.name + " kom inn i butikken");
+
+            Time storeTime = Time.valueOf("12:00:00");
+            storeTime.setTime(time + new Random().nextInt(3000));
+
+            Time checkoutTime = Time.valueOf("12:00:00");
+            checkoutTime.setTime(time + new Random().nextInt(50000000));
+
+            queue.add(new QueueSpot(customer, checkoutTime));
+            System.out.println(storeTime + ": Kunden " + customer.name + " kom inn i butikken");
         }
     }
 
