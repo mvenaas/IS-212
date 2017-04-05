@@ -62,7 +62,7 @@ public class Main {
     }
 
     /**
-     * Handle the customers to the priority queue is empty.
+     * Handle the customers to the priority until queue is empty.
      */
     private void processCustomers() {
         while (!queue.isEmpty()) {
