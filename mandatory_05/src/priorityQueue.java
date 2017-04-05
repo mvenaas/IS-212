@@ -43,19 +43,10 @@ public class Main {
 
 
     }
-
-    public static void main(String[] args) {
-        Main main = new Main();
-
-
-
-
-        main.customerWalksIn();
-
-        //main.time += 10000;
-        while (!main.queue.isEmpty()) {
+    private void processCustomers() {
+        while (!queue.isEmpty()) {
             try {
-                QueueSpot queueSpot = main.getNextCustomerInQueue();
+                QueueSpot queueSpot = getNextCustomerInQueue();
                 System.out.println(queueSpot.time+ ": " + queueSpot.customer.name + ", gikk til kassen: ");
 
 
@@ -67,6 +58,12 @@ public class Main {
                 System.out.println(e);
             }
         }
+    }
+    public static void main(String[] args) {
+        Main main = new Main();
+        main.customerWalksIn();
+        main.processCustomers();
+
     }
 
     private static class Customer {
