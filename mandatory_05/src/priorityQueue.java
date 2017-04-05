@@ -10,7 +10,7 @@ public class Main {
 
     List<QueueSpot> queue = new ArrayList<>();
 
-    public QueueSpot getNextCustomerInQueue() {
+    private QueueSpot getNextCustomerInQueue() {
         QueueSpot nextInLine = null;
         for (QueueSpot spot : queue) {
             if (nextInLine != null) {
@@ -69,7 +69,7 @@ public class Main {
         }
     }
 
-    public static class Customer {
+    private static class Customer {
         String name;
 
         public Customer (String name) {
@@ -77,7 +77,7 @@ public class Main {
         }
     }
 
-    public static class QueueSpot{
+    private static class QueueSpot{
         public Customer customer;
         public Time time;
 
