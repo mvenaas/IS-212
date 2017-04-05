@@ -24,8 +24,7 @@ public class Main {
         queue.remove(nextInLine);
         return nextInLine;
     }
-
-
+    
     private void customerWalksIn() {
         String[] names = {"Christian", "Erlend", "martin", "Hallgeir", "Even", "Sindre", "Moen", "Pelle", "Kåre", "Peter"};
 
@@ -40,33 +39,20 @@ public class Main {
             queue.add(new QueueSpot(customer, tidspunkt));
             System.out.println(tidIButikken + ": Kunden " + customer.name + " kom inn i butikken");
         }
-
-
     }
-
+    public void processCustomers() {
+        while (!queue.isEmpty()) {
+            QueueSpot queueSpot = getNextCustomerInQueue();
+            System.out.println(queueSpot.time+ ": " + queueSpot.customer.name + ", gikk til kassen: ");
+            // -> goes out of store
+            queueSpot.time.setTime(queueSpot.time.getTime() + new Random().nextInt(800000));
+            System.out.println(queueSpot.time+ ": " +queueSpot.customer.name + ", gikk ut av butikken");
+        }
+    }
     public static void main(String[] args) {
         Main main = new Main();
-
-
-
-
         main.customerWalksIn();
-
-        //main.time += 10000;
-        while (!main.queue.isEmpty()) {
-            try {
-                QueueSpot queueSpot = main.getNextCustomerInQueue();
-                System.out.println(queueSpot.time+ ": " + queueSpot.customer.name + ", gikk til kassen: ");
-
-
-                queueSpot.time.setTime(queueSpot.time.getTime() + new Random().nextInt(800000));
-                System.out.println(queueSpot.time+ ": " +queueSpot.customer.name + ", gikk ut av butikken");
-
-
-            }catch (Exception e) {
-                System.out.println(e);
-            }
-        }
+        main.processCustomers();
     }
 
     public static class Customer {
@@ -76,7 +62,6 @@ public class Main {
             this.name = name;
         }
     }
-
     public static class QueueSpot{
         public Customer customer;
         public Time time;
