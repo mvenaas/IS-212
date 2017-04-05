@@ -6,9 +6,8 @@ import java.util.concurrent.TimeUnit;
  * Created by Erlend on 26.03.2017.
  */
 
-public class Store extends Start {
+public class Store extends Visual {
     private PriorityQueue<Long> line = new PriorityQueue<>();
-
 
     public void visitStore(Customer customer){
         Time ct = Time.valueOf("12:00:00");
@@ -34,7 +33,7 @@ public class Store extends Start {
             }
         catch(InterruptedException e) { System.out.println("Error"); }
         line.remove(time);
-        System.out.println(line.size());
+        System.out.println("Folk i kø: " + line.size());
         leaveStore(customer);
 
 

@@ -1,4 +1,6 @@
-# Problem 1: 
+# Garbage Collection
+
+## Problem 1: 
 ####Mark and sweep GC
 The mark and sweep garbage collector is implemented as a subclass of Heap. Appendix B
 contains the skeleton code for the class. The mark() and sweep() methods must be
@@ -30,7 +32,7 @@ b) Write the sweep()
     }
 ```
 
-# Problem 2: 
+## Problem 2: 
 ####A compacting garbage collector
 a) Write the calculateAdrresses() method!
 ``` Java

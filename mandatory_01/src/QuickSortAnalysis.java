@@ -1,6 +1,3 @@
-
-package is211.alganalysis;
-
 import java.util.Arrays;
 
 

@@ -1,11 +1,10 @@
-import java.sql.Time;
 import java.util.Random;
 
 /**
  * Created by Erlend on 26.03.2017.
  */
 
-public class Customer extends Start{
+public class Customer extends Visual {
     public String name;
     public int visitTime;
     static long arrivalTime;
@@ -15,5 +14,7 @@ public class Customer extends Start{
         Random rnd = new Random();
         this.visitTime = rnd.nextInt(100);
         super.butikk.visitStore(this);
+        super.moveIcon(visitTime);
+
     }
 }
