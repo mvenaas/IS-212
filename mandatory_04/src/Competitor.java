@@ -1,5 +1,3 @@
-package sailscore;
-
 import java.util.LinkedList;
 
 

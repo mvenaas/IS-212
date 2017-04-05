@@ -1,5 +1,3 @@
-package sailscore;
-
 /**
  * Created by Erlend on 14.03.2017.
  */
